@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name"> Music Player</string>
+    <string name="contain_songs_image">Contain Songs image</string>
+</resources>
