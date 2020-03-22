@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name"> Music Player</string>
     <string name="contain_songs_image">Contain Songs image</string>
+    <string name="songs_banner">songs Banner</string>
+    <string name="pausebutton">PauseButton</string>
+    <string name="play_button">play Button</string>
 </resources>
