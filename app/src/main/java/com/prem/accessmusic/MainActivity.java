@@ -1,11 +1,14 @@
 package com.prem.accessmusic;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.media.MediaMetadataRetriever;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,10 +31,12 @@ public class MainActivity extends AppCompatActivity  implements RecylerViewAdapt
     ArrayList<File> songs;
     private  RecylerViewAdapterClass recylerViewAdapterClass ;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
        // listView=findViewById(R.id.listview);
         ActionBar actionBar=getSupportActionBar();
         actionBar.setLogo(R.drawable.ic_whatshot_black_24dp);
@@ -45,8 +50,23 @@ public class MainActivity extends AppCompatActivity  implements RecylerViewAdapt
 
         songs=readSong(Environment.getExternalStorageDirectory());
         songsName=new String[songs.size()];
+        MediaMetadataRetriever mediaMetadataRetriever=new MediaMetadataRetriever();
+        for(int i=0;i<songs.size();i++){
+            mediaMetadataRetriever.setDataSource(songs.get(i).getAbsolutePath());
+            String Duration = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
+            String title=mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+            String Bitrate=mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_BITRATE);
+            String year=mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_YEAR);
+            String Genre=mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_GENRE);
+            Log.d("XXDuration",""+Duration);
+            Log.d("XXtitle",""+title);
+            Log.d("XXBitrate",""+Bitrate);
+            Log.d("XXGenre",""+Genre);
+
+        }
         for(int i=0;i<songs.size();i++){
             songsName[i]=songs.get(i).getName();//.replace(".mp3","");
+
         }
         recylerViewAdapterClass = new RecylerViewAdapterClass(MainActivity.this, songsName,this);
        recyclerView.setAdapter(recylerViewAdapterClass);
@@ -80,8 +100,10 @@ public class MainActivity extends AppCompatActivity  implements RecylerViewAdapt
     public void RequestPermissions() {
         ActivityCompat.requestPermissions(this, new String[]{READ_EXTERNAL_STORAGE}, 1);
     }
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     public void onNoteClick(int position) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent intent=new Intent(this,playMusic.class);
         intent.putExtra("position",position);
         intent.putExtra("list",songs);

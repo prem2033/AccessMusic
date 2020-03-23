@@ -1,5 +1,8 @@
 package com.prem.accessmusic;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -10,10 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -30,9 +33,12 @@ public class playMusic extends AppCompatActivity {
     ImageView imageView;
     Bitmap bitmap;
 
+
+     @SuppressLint("SourceLockedOrientationActivity")
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_play_music);
         songsname=findViewById(R.id.songsName);
         DurationseekBar=findViewById(R.id.Durationseekbar);

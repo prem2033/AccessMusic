@@ -2,6 +2,7 @@ package com.prem.accessmusic.RecylerViewMethod;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,10 +22,11 @@ public class RecylerViewAdapterClass extends RecyclerView.Adapter<RecylerViewAda
     private Context context;
     private List<String> songsList;
     OnNoteListener monNoteListener;
-    public RecylerViewAdapterClass(Context context, String[] contactList,OnNoteListener onNoteListener) {
+    public RecylerViewAdapterClass(Context context, String[] SongsList,OnNoteListener onNoteListener) {
         this.context = context; //setting the Contact
-        this.songsList = Arrays.asList((contactList)); //Stroes Contact List
+        this.songsList = Arrays.asList((SongsList)); //Stroes Contact List
         this.monNoteListener=onNoteListener;
+
     }
     @NonNull
     @Override
