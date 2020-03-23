@@ -4,4 +4,5 @@
     <string name="songs_banner">songs Banner</string>
     <string name="pausebutton">PauseButton</string>
     <string name="play_button">play Button</string>
+    <string name="this_is_a_song_pallet">This Is a Song pallet</string>
 </resources>

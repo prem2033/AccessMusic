@@ -1,11 +1,13 @@
 package com.prem.accessmusic;
 
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,8 @@ public class playMusic extends AppCompatActivity {
     private int position;
     private Button pauseButton,playforward,palybackward;
     private ArrayList<File> songs;
+    ImageView imageView;
+    Bitmap bitmap;
 
      @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,9 @@ public class playMusic extends AppCompatActivity {
         playforward=findViewById(R.id.playforward);
         pauseButton=findViewById(R.id.pausebutton);
         palybackward=findViewById(R.id.playbackward);
+        //imageView=findViewById(R.id.imageViewcard);
+        // Bitmap resized = Bitmap. createScaledBitmap ( bitmap , 400 , 400 , true ) ;
+        // imageView .setImageBitmap(resized) ;
         ActionBar actionBar=getSupportActionBar();
         actionBar.setTitle("Now Playing");
         actionBar.setDisplayUseLogoEnabled(true);
