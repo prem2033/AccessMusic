@@ -82,7 +82,6 @@ public class MainActivity extends AppCompatActivity  implements RecylerViewAdapt
     }
     @Override
     public void onNoteClick(int position) {
-        Toast.makeText(MainActivity.this, "Clicked onNotemethod", Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(this,playMusic.class);
         intent.putExtra("position",position);
         intent.putExtra("list",songs);
