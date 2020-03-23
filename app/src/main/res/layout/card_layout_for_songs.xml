@@ -14,7 +14,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/cardbaclkground">
 
         <ImageView
             android:id="@+id/imageViewcard"
@@ -34,17 +35,17 @@
             android:id="@+id/textViewcard"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:gravity="center_vertical"
             android:text="@string/this_is_a_song_pallet"
+            android:textAlignment="center"
             android:textColor="#0B0A0A"
             android:textSize="20sp"
-            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.113"
             app:layout_constraintStart_toEndOf="@+id/imageViewcard"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.219"
-            android:gravity="center_vertical"
             tools:ignore="RtlCompat" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

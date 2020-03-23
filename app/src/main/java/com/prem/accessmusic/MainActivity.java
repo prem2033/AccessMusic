@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity  implements RecylerViewAdapt
         songs=readSong(Environment.getExternalStorageDirectory());
         songsName=new String[songs.size()];
         MediaMetadataRetriever mediaMetadataRetriever=new MediaMetadataRetriever();
+
         for(int i=0;i<songs.size();i++){
             mediaMetadataRetriever.setDataSource(songs.get(i).getAbsolutePath());
             String Duration = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
