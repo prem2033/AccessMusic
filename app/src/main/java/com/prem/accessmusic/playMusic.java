@@ -24,7 +24,7 @@ import java.util.TimerTask;
 
 public class playMusic extends AppCompatActivity {
     private  static  MediaPlayer mediaPlayer;
-    private TextView songsname;
+    private TextView songsname,textViewcard;
     private SeekBar DurationseekBar;
     private Thread updateSeekBar;
     private int position;
@@ -41,6 +41,9 @@ public class playMusic extends AppCompatActivity {
          setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_play_music);
         songsname=findViewById(R.id.songsName);
+        songsname.setSelected(true);
+       // textViewcard=findViewById(R.id.textViewcard);
+        //textViewcard.setSelected(true);
         DurationseekBar=findViewById(R.id.Durationseekbar);
         playforward=findViewById(R.id.playforward);
         pauseButton=findViewById(R.id.pausebutton);
@@ -52,8 +55,12 @@ public class playMusic extends AppCompatActivity {
         actionBar.setTitle("Now Playing");
         actionBar.setDisplayUseLogoEnabled(true);
         actionBar.setDisplayShowHomeEnabled(true);
-        PlayMusic();
-        //update Seekbar on moving songs
+         try {
+             PlayMusic();
+         } catch (Exception e) {
+             e.printStackTrace();
+         }
+         //update Seekbar on moving songs
 //        updateSeekBar=new Thread(){
 //            @Override
 //            public void run() {
@@ -104,7 +111,7 @@ public class playMusic extends AppCompatActivity {
             }
         });
     }
-    public void PlayMusic() {
+    public void PlayMusic(){
         Bundle bundle = getIntent().getExtras();
         songs = (ArrayList) bundle.getParcelableArrayList("list");
         position = bundle.getInt("position");
@@ -113,7 +120,7 @@ public class playMusic extends AppCompatActivity {
             mediaPlayer.release();
         }
             Uri uri = Uri.parse(songs.get(position).toString());
-            songsname.setText(songs.get(position).getName().toString());
+            songsname.setText(songs.get(position).getName());
             mediaPlayer = MediaPlayer.create(this, uri);
             setSeekBarOnMusic();
             mediaPlayer.start();
@@ -139,7 +146,7 @@ public class playMusic extends AppCompatActivity {
         position=((position-1)<0)?(songs.size()-1):(position-1);
         Uri uri=Uri.parse(songs.get(position).toString());
         mediaPlayer=MediaPlayer.create(getApplicationContext(),uri);
-        songsname.setText(songs.get(position).getName().toString());
+        songsname.setText(songs.get(position).getName());
         mediaPlayer.start();
     }
     public void playForward(){
@@ -148,7 +155,7 @@ public class playMusic extends AppCompatActivity {
         position=(position+1)%songs.size();
         Uri uri=Uri.parse(songs.get(position).toString());
         mediaPlayer=MediaPlayer.create(getApplicationContext(),uri);
-        songsname.setText(songs.get(position).getName().toString());
+        songsname.setText(songs.get(position).getName());
         mediaPlayer.start();
     }
     public boolean onOptionsItemSelected(MenuItem item) {
