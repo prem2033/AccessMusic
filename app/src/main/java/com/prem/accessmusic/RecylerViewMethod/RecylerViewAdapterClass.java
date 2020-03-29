@@ -22,25 +22,29 @@ public class RecylerViewAdapterClass extends RecyclerView.Adapter<RecylerViewAda
     private Context context;
     private List<String> songsList;
     OnNoteListener monNoteListener;
+    //constructor to initilize variable
     public RecylerViewAdapterClass(Context context, String[] SongsList,OnNoteListener onNoteListener) {
         this.context = context; //setting the Contact
         this.songsList = Arrays.asList((SongsList)); //Stroes Contact List
         this.monNoteListener=onNoteListener;
 
     }
+    //design of the card or the view
     @NonNull
     @Override
     public RecylerViewAdapterClass.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //creating view for the card
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout_for_songs, parent, false);
-        return new ViewHolder(view,monNoteListener);
+        return new ViewHolder(view,monNoteListener);//returing view holder
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecylerViewAdapterClass.ViewHolder holder, int position) {
-       // String  contact = songsList.get(position);
-        holder.textView.setText((CharSequence) songsList.get(position));
+       // String  contact = songsList.get(position); //get the data from position
+        holder.textView.setText((CharSequence) songsList.get(position)); //set using holder
     }
 
+    //item count to show in recylwe View
     @Override
     public int getItemCount() {
         return songsList.size();
@@ -55,7 +59,7 @@ public class RecylerViewAdapterClass extends RecyclerView.Adapter<RecylerViewAda
             super(itemView);
             imageView = itemView.findViewById(R.id.imageViewcard);
             textView = itemView.findViewById(R.id.textViewcard);
-             imageView.setOnClickListener(this);
+             imageView.setOnClickListener(this);//for the listener
             textView.setOnClickListener(this);
             this.onNoteListener=onNoteListener;
 

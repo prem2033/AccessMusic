@@ -14,8 +14,10 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.prem.accessmusic.RecylerViewMethod.RecylerViewAdapterClass;
 
@@ -46,12 +48,12 @@ public class MainActivity extends AppCompatActivity  implements RecylerViewAdapt
              RequestPermissions();
         recyclerView=findViewById(R.id.recylerview);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));//layout for recylerview
+        //recyclerView.setLayoutManager(new GridLayoutManager(this,3));
         songs=readSong(Environment.getExternalStorageDirectory());
         songsName=new String[songs.size()];
         MediaMetadataRetriever mediaMetadataRetriever=new MediaMetadataRetriever();
-
+        //getting metadata
         for(int i=0;i<songs.size();i++){
             mediaMetadataRetriever.setDataSource(songs.get(i).getAbsolutePath());
             String Duration = mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION);
